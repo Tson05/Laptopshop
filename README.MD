@@ -1,1 +1,1 @@
-Ngày 08/02 : Học đến vid 56/ pdf 56
+Ngày 09/02 : Học đến vid 59/ pdf 59
