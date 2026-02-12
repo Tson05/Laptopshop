@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import vn.son.laptopshop.domain.User;
+import vn.son.laptopshop.repository.UserRepository;
 import vn.son.laptopshop.service.UserService;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +16,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 public class UserController {
-    private UserService userService;
+
+    private final UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
+
     }
 
     @RequestMapping("/")
@@ -30,7 +33,7 @@ public class UserController {
 
     @RequestMapping("/admin/user")
     public String getUserPage(Model model) {
-        String test = this.userService.handlHello();
+
         model.addAttribute("newUser", new User());
         return "admin/user/create";
     }
@@ -39,6 +42,7 @@ public class UserController {
 
     public String createUserPage(Model model, @ModelAttribute("newUser") User son) {
         System.out.println("run here:" + son);
+        this.userService.handlSaveUser(son);
         return "hello";
     }
 
