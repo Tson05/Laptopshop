@@ -1,1 +1,1 @@
-Ngày 11/02 : Học đến vid 64/ pdf 66
+Ngày 11/02 : Học đến vid 71/ pdf 71
