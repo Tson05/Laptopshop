@@ -1,5 +1,7 @@
 package vn.son.laptopshop.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +28,8 @@ public class UserController {
 
     @RequestMapping("/")
     public String getHomePage(Model model) {
+        List<User> allUsers = this.userService.getAllUserByEmail("1@gmail.com");
+        System.out.println(allUsers);
         String test = this.userService.handlHello();
 
         return "hello";
@@ -33,17 +37,24 @@ public class UserController {
 
     @RequestMapping("/admin/user")
     public String getUserPage(Model model) {
+        List<User> users = this.userService.getAllUser();
+        model.addAttribute("users1", users);
+        return "/admin/user/table-user";
+    }
+
+    @RequestMapping("/admin/user/create")
+    public String geCreatetUserPage(Model model) {
 
         model.addAttribute("newUser", new User());
         return "admin/user/create";
     }
 
-    @RequestMapping(value = "/admin/user/create1", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
 
     public String createUserPage(Model model, @ModelAttribute("newUser") User son) {
-        System.out.println("run here:" + son);
+
         this.userService.handlSaveUser(son);
-        return "hello";
+        return "redirect:/admin/user";
     }
 
 }
