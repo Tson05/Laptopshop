@@ -2,6 +2,7 @@ package vn.son.laptopshop.service;
 
 import java.util.List;
 
+import org.springframework.boot.webmvc.autoconfigure.WebMvcProperties.Apiversion.Use;
 import org.springframework.stereotype.Service;
 
 import vn.son.laptopshop.domain.User;
@@ -32,5 +33,13 @@ public class UserService {
 
         return this.userRepository.save(user);
 
+    }
+
+    public User getUserById(long id) {
+        return this.userRepository.findById(id);
+    }
+
+    public void deleteUser(long id) {
+        this.userRepository.deleteById(id);
     }
 }

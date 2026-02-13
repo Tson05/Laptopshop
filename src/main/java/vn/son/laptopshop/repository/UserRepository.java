@@ -12,7 +12,12 @@ import vn.son.laptopshop.domain.User;
 public interface UserRepository extends JpaRepository<User, Long> {
     User save(User son);
 
+    void deleteById(long id);
+
     List<User> findByEmail(String email);
 
     List<User> findAll();
+
+    User findById(long id);
+
 }
