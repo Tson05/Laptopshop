@@ -1,1 +1,1 @@
-Ngày 11/02 : Học đến vid 94
+Ngày 11/02 : Học đến vid 96
