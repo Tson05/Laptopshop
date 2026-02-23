@@ -6,11 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import vn.son.laptopshop.domain.User;
-import vn.son.laptopshop.repository.UserRepository;
+
 import vn.son.laptopshop.service.UserService;
 
 import org.springframework.web.bind.annotation.GetMapping;
