@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,10 +28,13 @@ public class UserController {
 
     private final UserService userService;
     private final UploadService uploadService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService, UploadService uploadService) {
+    public UserController(UserService userService, UploadService uploadService,
+            PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.uploadService = uploadService;
+        this.passwordEncoder = passwordEncoder;
 
     }
 
@@ -71,8 +75,14 @@ public class UserController {
             @RequestParam("hoidanitFile") MultipartFile file) {
 
         String avatar = this.uploadService.handlSaveUploadFile(file, "avatar");
+        String hashPassword = this.passwordEncoder.encode(son.getPassword());
+        son.setAvatar(avatar);
+        son.setPassword(hashPassword);
+        son.setRole(this.userService.getRoleByName(son.getRole().getName()));
+        this.userService.handlSaveUser(son);
 
         // this.userService.handlSaveUser(son);
+
         return "redirect:/admin/user";
     }
 
